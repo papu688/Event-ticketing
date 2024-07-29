@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Page</title>
+</head>
+<body>
+    <h1>Personal Page</h1>
+
+    <!-- View Purchased Tickets -->
+    <h2>My Tickets</h2>
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                <h3>{{ ticket.event.title }}</h3>
+                <p><strong>Date:</strong> {{ ticket.event.date }}</p>
+                <p><strong>Purchase Date:</strong> {{ ticket.purchase_date }}</p>
+            </li>
+        {% empty %}
+            <li>No tickets found.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Change Username -->
+    <h2>Change Username</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ username_form.as_p }}
+        <button type="submit" name="change_username">Change Username</button>
+    </form>
+
+    <!-- Change Password -->
+    <h2>Change Password</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ password_form.as_p }}
+        <button type="submit" name="change_password">Change Password</button>
+    </form>
+</body>
+</html>

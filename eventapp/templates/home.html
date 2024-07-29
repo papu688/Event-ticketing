@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
 <body>
     <h1>Home Page</h1>
+
+    {% if is_organizer %}
+        <a href="{% url 'create_event' %}">Create Event</a>
+    {% endif %}
+
     <ul>
         {% for event in events %}
-            <li>{{ event.title }}</li>
-            <li>{{ event.description }}</li>
-            <li>{{ event.date }}</li>
-            <li>{{ event.price }}</li>
-            <li>{{ event.location }}</li>
+            <li>
+                <h2>{{ event.title }}</h2>
+                <p>{{ event.description }}</p>
+                <p>Date: {{ event.date }}</p>
+                <p>Price: {{ event.price }}</p>
+                <p>Location: {{ event.location }}</p>
+                <form action="{% url 'buy_tickets' event.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Buy Ticket</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No events available at the moment.</li>
         {% endfor %}
     </ul>
-    
+   <p><a href="{% url 'logout' %}">LOGOUT</a></p>
 </body>
 </html>

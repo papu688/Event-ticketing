@@ -21,7 +21,7 @@ class Event(models.Model):
     date = models.DateTimeField()
     price = models.FloatField()
     max_tickets = models.PositiveIntegerField()
-    tickets_sold = models.PositiveIntegerField()
+    tickets_sold = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=100)
     organizer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='organized_events')
     is_active = models.BooleanField(default=True)

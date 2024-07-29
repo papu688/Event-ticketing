@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Tickets</title>
+</head>
+<body>
+    <h1>My Tickets</h1>
+    <ul>
+        {% for ticket in tickets %}
+        <li>
+            <h2>{{ ticket.event.title }}</h2>
+            <p><strong>Purchase Date:</strong> {{ ticket.purchase_date }}</p>
+            <p><strong>Event Date:</strong> {{ ticket.event.date }}</p>
+            <p><strong>Price:</strong> {{ ticket.event.price }}</p>
+            <p><strong>Location:</strong> {{ ticket.event.location }}</p>
+        </li>
+        {% empty %}
+        <li>No tickets found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
